@@ -14,9 +14,17 @@ def osztalyhatarozo():
         if ip1 > 255 or ip1 < 0:
             print('ez nem jó!')
             continue
+        elif ip2 > 255 or ip2 < 0:
+            print('ez nem jó!')
+            continue
+        elif ip3 > 255 or ip3 < 0:
+            print('ez nem jó!')
+            continue    
+        elif ip4 > 255 or ip4 < 0:
+            print('ez nem jó!')
+            continue
+        
 
-
-        #teszt print(ip1,ip2,ip3,ip4)
     #Osztály meghatározás
         #"A" osztály
         if ip1 <= 127 and ip1 >= 1:
@@ -59,5 +67,11 @@ def osztalyhatarozo():
 
 osztalyhatarozo()
         
+
+
+
+
+
+
 
 
