@@ -26,7 +26,6 @@ def osztalyhatarozo():
             print('ez nem jó!')
             continue
         
-
     #Osztály meghatározás
         #"A" osztály
         if ip1 <= 127 and ip1 >= 1:
@@ -64,16 +63,99 @@ def osztalyhatarozo():
         elif ip1 <= 240 and ip1 >= 255:
             print('Ez egy "D" osztályú cím nem osztható ki, mert internet címek!!!')
 
+def atvaltasKettesSzamrendszerbe(szam):
+    maradek = szam
+    eredmeny = ""
+
+    for i in [ 128, 64, 32, 16, 8, 4, 2 , 1 ]:
+        if maradek >= i:
+            maradek -= i
+            eredmeny += "1"
+        else:
+            eredmeny += "0"
+
+    return eredmeny
+
+def atvaltasTizesSzamrendszerbe(szam):
+    szamjegyek = []
+    for i in range(0,len(szam)):
+        szamjegyek.append(int(szam[i]))
+    osszeg = 0
+    for i in range(0,len(szamjegyek)):
+        osszeg += szamjegyek[i]*2**(7-i)
+    return osszeg
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 
 while True:
-    valaszto=input('Mit akkar csinálni : "1" ip cím osztály határozó;  "2" ip cím 10-ből 2-be átváltás(dec - bin); "3" ip cím 2-ből 10-be átváltás (bin - dec); "4" ip cím összebaszkurálás a maszkal; 0 kilépés')
-    if valaszto > 0 and < 4:
+    valaszto=int(input('Mit akkar csinálni : "1" ip cím osztály határozó;       "2" ip cím 10-ből 2-be átváltás(dec - bin);     "3" ip cím 2-ből 10-be átváltás (bin - dec);     "4" ip cím összebaszkurálás a maszkal; 0 kilépés \n' ))
+    
+    if valaszto < 0 and valaszto > 4:
         print('Nem jó probáld újra!')
+    
     elif valaszto == 1:
         osztalyhatarozo()
+    
     elif valaszto == 2:
         
+        ip = input("Adj meg egy IP-címet: \n")
+        mask = input("Adj meg egy maszkot: \n")
+
+       
+        mask2 = ""
+
+        for i in ip.split("."):
+            szam2 = atvaltasKettesSzamrendszerbe(int(i))
+            mask2 += szam2
+
+
+        print(f"Az ip: {ip2}\nA maszk: {mask2}") 
+    
+    elif valaszto == 3:
+        ip = input("Adj meg egy IP-címet: \n")
+        mask = input("Adj meg egy maszkot: \n")
+
+        ip2 = ""
+
+        for i in ip.split("."):
+            szam2 = atvaltasTizesSzamrendszerbe((i))
+            ip2 += szam2
+
+       
+
+        print(f"Az ip: {ip2}\nA maszk: {mask2}") 
+    elif valaszto == 4:
+             #még nincs kész
+            continue
+    elif valaszto == 0:
+        break
+
+
+
+
+
+
+
