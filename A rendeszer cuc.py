@@ -155,7 +155,7 @@ while True:
 
 
 
-
+#ez egy  menű rendszer
 
 
 
