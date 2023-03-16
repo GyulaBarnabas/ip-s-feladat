@@ -15,28 +15,23 @@ def atvaltasKettesSzamrendszerbe(szam):
 
     return eredmeny
 
-def atvaltasTizesSzamrendszerbe(szam):
-    szamjegyek = []
-    for i in range(0,len(szam)):
-        szamjegyek.append(int(szam[i]))
-    osszeg = 0
-    for i in range(0,len(szamjegyek)):
-        osszeg += szamjegyek[i]*2**(7-i)
-    return osszeg
+def atvaltasTizesSzamrendszerbe(num):
+    decimal = 0
+    for i, bit in enumerate(num[::-1]):
+        if bit == '1':
+            decimal += 2 ** i
+    return decimal
+
 
 # 192.168.124.1 255.255.255.0 (11111111.11111111.11111111.00000000)
-
-#ip2 = ""
-
-#for i in ip.split("."):
-#    szam2 = atvaltasKettesSzamrendszerbe(int(i))
-#    ip2 += szam2
 
 ip2 = ""
 
 for i in ip.split("."):
-    szam2 = atvaltasTizesSzamrendszerbe((i))
-    ip2 += szam2
+    szam2 = atvaltasTizesSzamrendszerbe(atvaltasKettesSzamrendszerbe(int(i)))
+    ip2 += str(szam2) + "."
+
+ip2 = ip2[:-1]
 
 mask2 = ""
 
