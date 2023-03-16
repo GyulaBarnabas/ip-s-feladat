@@ -2,6 +2,9 @@ ip = input("Adj meg egy IP-címet: \n")
 
 mask = input("Adj meg egy maszkot: \n")
 
+def is_binary(num):
+    return set(num) <= {'0', '1'}
+
 def atvaltasKettesSzamrendszerbe(szam):
     maradek = szam
     eredmeny = ""
@@ -22,22 +25,30 @@ def atvaltasTizesSzamrendszerbe(num):
             decimal += 2 ** i
     return decimal
 
+def convert(num):
+    if is_binary(num):
+        return str(atvaltasTizesSzamrendszerbe(num))
+    else:
+        return atvaltasKettesSzamrendszerbe(int(num))
+
 
 # 192.168.124.1 255.255.255.0 (11111111.11111111.11111111.00000000)
 
 ip2 = ""
 
 for i in ip.split("."):
-    szam2 = atvaltasTizesSzamrendszerbe(atvaltasKettesSzamrendszerbe(int(i)))
-    ip2 += str(szam2) + "."
+    szam2 = convert(i)
+    ip2 += szam2 + "."
 
 ip2 = ip2[:-1]
 
 mask2 = ""
 
-for i in ip.split("."):
-    szam2 = atvaltasKettesSzamrendszerbe(int(i))
-    mask2 += szam2
+for i in mask.split("."):
+    szam2 = convert(i)
+    mask2 += szam2 + "."
+
+mask2 = mask2[:-1]
 
 
 print(f"Az ip: {ip2}\nA maszk: {mask2}")
